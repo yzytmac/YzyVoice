@@ -11,18 +11,22 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 public class QQActivity extends Activity {
-
+	private EditText nameET;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		FMOD.init(this);
 		setContentView(R.layout.activity_main);
+		nameET = (EditText) findViewById(R.id.id_et);
+		nameET.setText("海阔天空.mp3");// 根目录海阔天空.mp3
 	}
 
 	public void mFix(final View btn) {
-		final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separatorChar + "test.mp3";// 根目录海阔天空mp3
+		String nameString = nameET.getText().toString();
+		final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separatorChar + nameString;// 根目录海阔天空mp3
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
